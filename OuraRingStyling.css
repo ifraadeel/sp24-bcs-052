@@ -1,16 +1,23 @@
 /* style.css */
 body {
   background-color: rgb(220, 200, 176);
-  margin: 0;                  
+  margin: 0;            
+}      
 p{
     text-align: center;
     color: black;
 }
 .hero-video {
   width: 95%;
-  height: 40%;
+  height: 600px;
   object-fit: cover;
   display: block;
   padding: 33px;
   margin: auto;
+}
+.nav-items {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
