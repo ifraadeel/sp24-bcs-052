@@ -12,12 +12,106 @@ p{
   height: 600px;
   object-fit: cover;
   display: block;
-  padding: 33px;
+  padding: 10px;
   margin: auto;
 }
-.nav-items {
+.nav-items{
+  background: rgba(255, 255, 255, 0.2);
+  position: sticky;
+  top: 0;
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  align-items: center;
+  justify-content: space-between;   
+  object-fit: cover;
+  padding: 16px 40px;
+}
+.logo {
+  font-size: 30px;
+  color: black;
+}
+.nav-list span {
+  font-size: 18px;
+  gap: 24px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.cart-icon {
+  border: none;
+  background: #f2f2f2;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.hero-section {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  font-family: system-ui, sans-serif;
+}
+.hero-content {
+  position: absolute;
+  top: 20%;
+  left: 6%;                   
+  color: #ffffff;
+  max-width: 420px;           
+}
+.main-title {
+  color: black;
+  margin: 0 0 30px;
+  font-size: 18px;
+  margin-bottom: 20px 0 20px;
+}
+.description {
+  font-size: 64px;
+  text-align: left;
+  line-height: 1.05;
+  margin: 0 0 24px
+}
+.d2 {
+  font-style: italic;
+}
+.discover-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  margin: 70px 0 0;
+  background-color: #000;
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ring-card {
+  position: absolute;
+  right: 120px;          /* distance from right edge of video */
+  bottom: 30px;         /* distance from bottom edge of video */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;   /* smaller padding = smaller card */
+  max-width: 350px;     /* limit total card width */
+  border-radius: 16px;
+  background: rgba(93, 91, 91, 0.65);
+  color: #fff;
+  font-size: 14px;      
+}
+.ceramic-ring-card {
+  width: 170px; 
+  border-radius: 9px;         
+  height: auto;
+}
+.ring-card-tile {
+  font-size: 16px;
+  margin: 1 0 0px
+}
+.hero-card-cta{
+  display: inline-block;
+  margin:0 0 0px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  
 }
