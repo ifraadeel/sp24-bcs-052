@@ -99,7 +99,7 @@ p{
 .ceramic-ring-card {
   width: 170px; 
   border-radius: 9px;         
-  height: auto;
+  height: 170px;
 }
 .ring-card-tile {
   font-size: 16px;
@@ -113,5 +113,73 @@ p{
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  
+}
+/* Below Hero Section */
+.Category-images {
+  position: static;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 40px 6%;
+  margin-top: 40px
+}
+
+.ring-card {
+  position: relative;
+  flex: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 320px;
+}
+
+.ring-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ring-content {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  right: 32px;
+  color: #ffffff;
+}
+
+.ring-name {
+  font-size: 36px;
+  margin: 0 0 8px;
+}
+
+.ring-price {
+  font-size: 18px;
+  margin: 0 0 20px;
+  color:#f2f2f2
+}
+
+
+.ring-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.exp,
+.shop {
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+}
+
+.exp {
+  background: transparent;
+  color: #ffffff;
+}
+
+.shop {
+  background: #fdf3e7;
+  color: #000000;
+  border-color: #fdf3e7;
 }
