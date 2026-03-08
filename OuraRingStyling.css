@@ -3,7 +3,7 @@ body {
   background-color: rgb(220, 200, 176);
   margin: 0;            
 }      
-p{
+.top-banner {
     text-align: center;
     color: black;
 }
@@ -82,7 +82,7 @@ p{
   font-weight: 500;
   cursor: pointer;
 }
-.ring-card {
+.hero-ring-card {
   position: absolute;
   right: 120px;          /* distance from right edge of video */
   bottom: 30px;         /* distance from bottom edge of video */
@@ -118,12 +118,12 @@ p{
 .Category-images {
   position: static;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   gap: 24px;
   padding: 40px 6%;
   margin-top: 40px
 }
-
 .ring-card {
   position: relative;
   flex: 1;
@@ -131,14 +131,12 @@ p{
   overflow: hidden;
   height: 320px;
 }
-
 .ring-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
 .ring-content {
   position: absolute;
   left: 32px;
@@ -146,24 +144,22 @@ p{
   right: 32px;
   color: #ffffff;
 }
-
 .ring-name {
   font-size: 36px;
   margin: 0 0 8px;
+  text-align: left;
 }
-
 .ring-price {
+  text-align: left;
   font-size: 18px;
   margin: 0 0 20px;
   color:#f2f2f2
 }
-
-
 .ring-actions {
+  justify-content: right;
   display: flex;
   gap: 16px;
 }
-
 .exp,
 .shop {
   border-radius: 999px;
@@ -172,14 +168,33 @@ p{
   cursor: pointer;
   border: 2px solid #ffffff;
 }
-
 .exp {
   background: transparent;
   color: #ffffff;
 }
-
 .shop {
   background: #fdf3e7;
   color: #000000;
   border-color: #fdf3e7;
+}
+#tagline2{
+  text-align: center;
+  margin: 120px 0 20px;
+  justify-content: center;
+  font-size: 32px;
+  font-family: system-ui, sans-serif;
+  clear: both;
+}
+.why-oura-wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.why-oura {
+  border-radius: 999px;
+  padding: 10px 24px;
+  margin: 0 20px 80px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ffffff;
 }
