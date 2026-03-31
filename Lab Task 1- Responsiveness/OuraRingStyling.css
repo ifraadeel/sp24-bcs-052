@@ -1,0 +1,313 @@
+/* style.css */
+body {
+  background-color: rgb(220, 200, 176);
+  margin: 0;            
+}      
+.top-banner {
+    text-align: center;
+    color: black;
+}
+.hero-video {
+  width: 95%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+  padding: 10px;
+  margin: auto;
+}
+.nav-items{
+  background: rgba(255, 255, 255, 0.2);
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   
+  object-fit: cover;
+  padding: 16px 40px;
+}
+.logo {
+  font-size: 30px;
+  color: black;
+}
+.nav-list span {
+  font-size: 18px;
+  gap: 24px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.cart-icon {
+  border: none;
+  background: #f2f2f2;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.hero-section {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  font-family: system-ui, sans-serif;
+}
+.hero-content {
+  position: absolute;
+  top: 20%;
+  left: 6%;                   
+  color: #ffffff;
+  max-width: 420px;           
+}
+.main-title {
+  color: black;
+  margin: 0 0 30px;
+  font-size: 18px;
+  margin-bottom: 20px 0 20px;
+}
+.description {
+  font-size: 64px;
+  text-align: left;
+  line-height: 1.05;
+  margin: 0 0 24px
+}
+.d2 {
+  font-style: italic;
+}
+.discover-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  margin: 70px 0 0;
+  background-color: #000;
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.hero-ring-card {
+  position: absolute;
+  right: 120px;          /* distance from right edge of video */
+  bottom: 30px;         /* distance from bottom edge of video */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;   /* smaller padding = smaller card */
+  max-width: 350px;     /* limit total card width */
+  border-radius: 16px;
+  background: rgba(93, 91, 91, 0.65);
+  color: #fff;
+  font-size: 14px;      
+}
+.ceramic-ring-card {
+  width: 170px; 
+  border-radius: 9px;         
+  height: 170px;
+}
+.ring-card-tile {
+  font-size: 16px;
+  margin: 1 0 0px
+}
+.hero-card-cta{
+  display: inline-block;
+  margin:0 0 0px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+/* Below Hero Section */
+.Category-images {
+  position: static;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 24px;
+  padding: 40px 6%;
+  margin-top: 40px
+}
+.ring-card {
+  position: relative;
+  flex: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 320px;
+}
+.ring-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ring-content {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  right: 32px;
+  color: #ffffff;
+}
+.ring-name {
+  font-size: 36px;
+  margin: 0 0 8px;
+  text-align: left;
+}
+.ring-price {
+  text-align: left;
+  font-size: 18px;
+  margin: 0 0 20px;
+  color:#f2f2f2
+}
+.ring-actions {
+  justify-content: right;
+  display: flex;
+  gap: 16px;
+}
+.exp,
+.shop {
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+}
+.exp {
+  background: transparent;
+  color: #ffffff;
+}
+.shop {
+  background: #fdf3e7;
+  color: #000000;
+  border-color: #fdf3e7;
+}
+#tagline2{
+  text-align: center;
+  margin: 120px 0 20px;
+  justify-content: center;
+  font-size: 32px;
+  font-family: system-ui, sans-serif;
+  clear: both;
+}
+.why-oura-wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.why-oura {
+  border-radius: 999px;
+  padding: 10px 24px;
+  margin: 0 20px 80px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+}
+/* ===================================
+   TABLET — 1024px and below
+=================================== */
+@media (max-width: 1024px) {
+
+    /* Nav */
+    .nav-items {
+        padding: 14px 24px;
+    }
+    .nav-list span {
+        font-size: 15px;
+        margin: 0 8px;
+    }
+
+    /* Hero */
+    .hero-video {
+        width: 100%;
+        border-radius: 0;
+    }
+    .description {
+        font-size: 48px;
+    }
+
+    /* Hero ring card — hide on tablet to avoid overlap */
+    .hero-ring-card {
+        display: none;
+    }
+
+    /* Category cards — slightly shorter */
+    .ring-card {
+        height: 360px;
+    }
+    .ring-name {
+        font-size: 28px;
+    }
+}
+
+
+/* ===================================
+   MOBILE — 768px and below
+=================================== */
+@media (max-width: 768px) {
+
+    /* Banner */
+    .top-banner p {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+
+    /* Nav — hide nav links, keep logo and cart */
+    .nav-items {
+        padding: 14px 20px;
+    }
+    .nav-list {
+        display: none;       /* hide nav links on mobile */
+    }
+
+    /* Hero */
+    .hero-section {
+        height: auto;
+    }
+    .hero-video {
+        width: 100%;
+        height: 400px;
+        margin-top: 0;
+        border-radius: 0;
+    }
+    .hero-content {
+        top: 12%;
+        left: 5%;
+    }
+    .description {
+        font-size: 36px;
+    }
+    .discover-btn {
+        margin: 30px 0 0;
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    .hero-ring-card {
+        display: none;       /* hide card on mobile */
+    }
+
+    /* Category cards — stack vertically on mobile */
+    .Category-images {
+        flex-direction: column;  /* key change: side by side → stacked */
+        padding: 24px 5%;
+        margin-top: 20px;
+        gap: 16px;
+    }
+    .ring-card {
+        height: 320px;
+        flex: none;          /* remove flex stretching */
+        width: 100%;         /* full width */
+    }
+    .ring-name {
+        font-size: 24px;
+    }
+    .ring-price {
+        font-size: 16px;
+        margin: 0 0 12px;
+    }
+    .exp, .shop {
+        padding: 8px 18px;
+        font-size: 14px;
+    }
+
+    /* Tagline */
+    #tagline2 {
+        font-size: 20px;
+        padding: 30px 20px 16px;
+    }
+}
