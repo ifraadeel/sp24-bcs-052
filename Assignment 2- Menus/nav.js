@@ -1,6 +1,4 @@
-// nav.js — Hamburger menu toggle for Oura Ring responsive nav
 
-// Step 1: Grab the hamburger button and the nav list from the page
 var hamburger = document.getElementById("hamburger");
 var navList   = document.getElementById("nav-list");
 
