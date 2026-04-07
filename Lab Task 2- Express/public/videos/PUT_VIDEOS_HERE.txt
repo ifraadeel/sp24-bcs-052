@@ -1,0 +1,5 @@
+Place your video asset here:
+  - OuraRing Landing Page video.mp4
+
+Original path was: ../Assests/videos/
+Express serves it as:  /videos/OuraRing Landing Page video.mp4

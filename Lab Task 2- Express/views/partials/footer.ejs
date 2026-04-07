@@ -1,0 +1,70 @@
+<!-- views/partials/footer.ejs -->
+<footer class="footer">
+
+    <div class="footer-top">
+        <div class="footer-logo">ŌURA</div>
+        <div class="footer-payments">
+            <% payments.forEach(function(p) { %>
+                <span class="payment-icon"><%= p %></span>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+
+        <div class="footer-signup">
+            <h3 class="footer-signup-heading">Receive articles, tips, and offers from Oura</h3>
+            <div class="footer-email-row">
+                <input type="email" placeholder="Email address" class="footer-email-input">
+                <button class="footer-email-btn">→</button>
+            </div>
+            <p class="footer-privacy">We care about protecting your data. Read more in our <a href="#">Privacy Policy</a>.</p>
+        </div>
+
+        <div class="footer-col">
+            <p class="footer-col-heading">Our Company</p>
+            <% footerLinks.company.forEach(function(link) { %>
+                <a href="#"><%= link %></a>
+            <% }); %>
+        </div>
+
+        <div class="footer-col">
+            <p class="footer-col-heading">Support</p>
+            <% footerLinks.support.forEach(function(link) { %>
+                <a href="#"><%= link %></a>
+            <% }); %>
+        </div>
+
+        <div class="footer-col">
+            <p class="footer-col-heading">Partner With Us</p>
+            <% footerLinks.partner.forEach(function(link) { %>
+                <a href="#"><%= link %></a>
+            <% }); %>
+        </div>
+
+        <div class="footer-col">
+            <p class="footer-col-heading">Connect</p>
+            <% footerLinks.connect.forEach(function(link) { %>
+                <a href="#"><%= link %></a>
+            <% }); %>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">IP Notice</a>
+            <a href="#">Security Center</a>
+        </div>
+        <p class="footer-copyright">© 2026 Oura Health Oy. All rights reserved. ŌURA, OURA, and Ō are trademarks of Oura Health Oy and may not be used without permission.</p>
+        <button class="footer-lang-btn">🌐 English</button>
+    </div>
+
+</footer>
+
+<script src="/js/nav.js"></script>
+</body>
+</html>
