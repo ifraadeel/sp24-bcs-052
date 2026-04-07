@@ -1,0 +1,10 @@
+Place your image assets here:
+  - men-ring.avif
+  - women-ring.jpg
+  - or4-ceramic-card.avif
+  - slide-1-sleep.jpg
+  - slide-4-wellness.avif
+  - home-press-ceramic.avif
+
+Original path was: ../Assests/images/
+Express serves them as:  /images/<filename>

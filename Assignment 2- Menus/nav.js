@@ -2,11 +2,9 @@
 var hamburger = document.getElementById("hamburger");
 var navList   = document.getElementById("nav-list");
 
-// Step 2: When hamburger is clicked, toggle the menu open/closed
 hamburger.addEventListener("click", function () {
     navList.classList.toggle("open");
 
-    // Also swap the icon: ☰ when closed, ✕ when open
     if (navList.classList.contains("open")) {
         hamburger.textContent = "✕";
     } else {
