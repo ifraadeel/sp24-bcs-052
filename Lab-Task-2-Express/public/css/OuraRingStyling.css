@@ -938,28 +938,22 @@ body {
         display: block;     /* visible only on mobile */
     }
 
-    /* --- Nav list: hidden by default on mobile (uses max-height for smooth animation) --- */
+    /* --- Nav list: hidden by default on mobile --- */
     .nav-list {
-        display: flex;              /* keep flex so items lay out correctly */
+        display: none;              /* collapsed by default */
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
         background: rgba(245, 240, 232, 0.98);
+        padding: 8px 0;
         gap: 0;
         border-top: 1px solid rgba(0, 0, 0, 0.08);
         order: 5;                   /* wraps below logo+hamburger row */
-
-        /* Smooth open/close via max-height transition */
-        max-height: 0;
-        overflow: hidden;
-        padding: 0;
-        transition: max-height 0.3s ease, padding 0.3s ease;
     }
 
     /* --- JS adds .open to make menu appear --- */
     .nav-list.open {
-        max-height: 400px;          /* large enough for all menu items */
-        padding: 8px 0;
+        display: flex;
     }
 
     /* --- Each nav item: full-width, finger-friendly --- */

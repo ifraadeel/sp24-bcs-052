@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Social Media Packages — International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --bg: #f7f6f3;
+  --white: #ffffff;
+  --obsidian: #0a0a0b;
+  --ink: #111114;
+  --blue: #1b4fff;
+  --blue-light: #4d74ff;
+  --blue-pale: #eef1ff;
+  --silver: #8e8e9a;
+  --silver-light: #c8c8d4;
+  --border: rgba(10,10,11,0.1);
+  --border-strong: rgba(10,10,11,0.18);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Mulish', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HERO */
+.hero {
+  background: var(--obsidian);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 24px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero-circle {
+  position: absolute;
+  border: 1px solid rgba(27,79,255,0.15);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.c1 { width: min(420px,80vw); height: min(420px,80vw); top: 50%; right: -80px; transform: translateY(-50%); animation: spin 30s linear infinite; }
+.c2 { width: min(270px,55vw); height: min(270px,55vw); top: 50%; right: -80px; transform: translateY(-50%); animation: spin 20s linear infinite reverse; }
+.c3 { width: min(130px,28vw); height: min(130px,28vw); top: 50%; right: -80px; transform: translateY(-50%); background: rgba(27,79,255,0.04); }
+@keyframes spin { from{transform:translateY(-50%) rotate(0deg)} to{transform:translateY(-50%) rotate(360deg)} }
+
+.hero-inner { position: relative; z-index: 1; max-width: 600px; }
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: slideIn .9s ease forwards .15s;
+}
+.eline { width: 36px; height: 1px; background: var(--blue); flex-shrink: 0; }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(44px, 10vw, 84px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: slideIn .9s ease forwards .3s;
+}
+.hero-title .outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+}
+.hero-title .blue { color: var(--blue); -webkit-text-stroke: 0; }
+
+.hero-desc {
+  font-size: clamp(14px, 3.5vw, 15px);
+  color: rgba(255,255,255,0.38);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: slideIn .9s ease forwards .45s;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  max-width: 340px;
+  opacity: 0;
+  animation: slideIn .9s ease forwards .6s;
+}
+.metric {
+  padding: 18px 20px;
+  background: rgba(10,10,11,0.85);
+}
+.metric-num {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 800;
+  color: var(--blue-light);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.metric-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+}
+
+@keyframes slideIn { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:translateX(0)} }
+
+/* NAV */
+.nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-link {
+  padding: 18px 20px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--silver);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+  font-weight: 400;
+  user-select: none;
+  flex-shrink: 0;
+}
+.nav-link:hover, .nav-link.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+/* SECTIONS */
+.section {
+  padding: 64px 24px;
+}
+.section-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.tline { width: 28px; height: 1.5px; background: var(--blue); flex-shrink: 0; }
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(26px, 6vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+.section-sub { font-size: 13px; color: var(--silver); margin-bottom: 36px; }
+
+/* GLOSSARY */
+.gloss-section { background: var(--white); }
+.gloss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.gloss-item {
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background .22s;
+}
+.gloss-item:hover { background: var(--blue-pale); }
+.gloss-num {
+  position: absolute;
+  top: 18px; right: 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: rgba(27,79,255,0.05);
+  line-height: 1;
+}
+.gloss-term {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.gloss-def { font-size: 13px; color: var(--silver); line-height: 1.65; }
+
+/* PACKAGES */
+.pkg-section { background: var(--bg); }
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+
+.pkg-card {
+  background: var(--white);
+  border: 1px solid var(--border-strong);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.pkg-card.mid { background: var(--obsidian); border-color: rgba(27,79,255,0.4); }
+.pkg-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+.pkg-card.mid:hover { box-shadow: 0 16px 56px rgba(27,79,255,0.14); }
+
+.pkg-stripe { height: 3px; }
+.pkg-card.low  .pkg-stripe { background: var(--silver-light); }
+.pkg-card.mid  .pkg-stripe { background: var(--blue); }
+.pkg-card.high .pkg-stripe { background: var(--obsidian); }
+
+.pkg-popular {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--blue);
+  background: rgba(27,79,255,0.12);
+  border: 1px solid rgba(27,79,255,0.25);
+  padding: 4px 9px;
+}
+
+.pkg-head { padding: 28px 24px 20px; position: relative; }
+.pkg-tier {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--silver);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.pkg-card.mid .pkg-tier { color: rgba(255,255,255,0.3); }
+
+.pkg-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(24px, 4.5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.pkg-card.mid  .pkg-name { color: #ffffff; }
+.pkg-card.high .pkg-name { color: var(--blue); }
+
+.price-row { display: flex; align-items: baseline; gap: 3px; flex-wrap: wrap; }
+.price-sym { font-size: 18px; font-weight: 600; color: var(--silver); }
+.price-amt {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.pkg-card.mid .price-sym { color: rgba(255,255,255,0.3); }
+.pkg-card.mid .price-amt { color: #ffffff; }
+.pkg-card.high .price-amt { color: var(--blue); }
+.price-per { font-size: 12px; color: var(--silver); margin-left: 3px; }
+.pkg-card.mid .price-per { color: rgba(255,255,255,0.28); }
+
+.pkg-divider { height: 1px; background: var(--border); margin: 0 24px; }
+.pkg-card.mid .pkg-divider { background: rgba(255,255,255,0.08); }
+
+.pkg-body {
+  padding: 20px 24px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pkg-summary {
+  font-size: 13px;
+  color: var(--silver);
+  line-height: 1.7;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.pkg-card.mid .pkg-summary { color: rgba(255,255,255,0.38); border-bottom-color: rgba(255,255,255,0.08); }
+
+.feat-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.pkg-card.mid .feat-label { color: rgba(77,116,255,0.9); }
+
+.feat-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.feat-list li {
+  font-size: 13px;
+  color: var(--silver);
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  line-height: 1.45;
+}
+.pkg-card.mid .feat-list li { color: rgba(255,255,255,0.44); }
+.feat-list li::before {
+  content: '';
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pkg-card.mid  .feat-list li::before { border-color: rgba(27,79,255,0.35); background: rgba(27,79,255,0.08); }
+.pkg-card.high .feat-list li::before { border-color: var(--blue); }
+
+.pkg-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,0.02);
+  font-size: 12px;
+  color: var(--silver);
+}
+.pkg-card.mid .pkg-footer { border-top-color: rgba(255,255,255,0.07); background: rgba(27,79,255,0.05); color: rgba(255,255,255,0.3); }
+.pkg-footer strong { color: var(--ink); font-weight: 600; }
+.pkg-card.mid .pkg-footer strong { color: #ffffff; }
+
+/* ADDONS */
+.addons-section { background: var(--white); }
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.addon-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: background .2s;
+}
+.addon-item:hover { background: var(--blue-pale); }
+.addon-name { font-size: 13px; color: var(--silver); }
+.addon-price { font-size: 13px; color: var(--blue); font-weight: 600; white-space: nowrap; }
+
+/* PAYMENT */
+.payment-section { background: var(--obsidian); }
+.payment-section .section-title { color: #ffffff; }
+.payment-section .section-sub { color: rgba(255,255,255,0.28); }
+.payment-section .section-tag { color: rgba(77,116,255,0.7); }
+.payment-section .tline { background: rgba(77,116,255,0.5); }
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+}
+.payment-item {
+  background: rgba(10,10,11,0.9);
+  padding: 24px 20px;
+  text-align: center;
+}
+.pay-icon { font-size: 26px; margin-bottom: 8px; }
+.pay-name { font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 3px; }
+.pay-note { font-size: 11px; color: rgba(255,255,255,0.22); }
+
+/* CTA CLOSE */
+.cta-close {
+  padding: 80px 24px;
+  text-align: center;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.cta-close::before {
+  content: 'GROW';
+  position: absolute;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(100px, 25vw, 200px);
+  font-weight: 800;
+  color: rgba(27,79,255,0.04);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.cta-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+}
+.cta-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 7vw, 60px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 16px;
+  position: relative;
+}
+.cta-sub { font-size: 14px; color: var(--silver); line-height: 1.6; position: relative; }
+
+/* FOOTER */
+footer {
+  background: var(--obsidian);
+  padding: 28px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.footer-brand span { color: var(--blue); }
+.footer-note { font-size: 12px; color: rgba(255,255,255,0.2); max-width: 380px; line-height: 1.65; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .hero { padding: 68px 18px 64px; }
+  .section { padding: 52px 18px; }
+  .pkg-head { padding: 22px 18px 16px; }
+  .pkg-body { padding: 16px 18px 20px; }
+  .pkg-divider { margin: 0 18px; }
+  .pkg-footer { padding: 12px 18px; }
+  .gloss-item { padding: 18px 18px; }
+  .addon-item { padding: 13px 16px; }
+  footer { flex-direction: column; }
+  .footer-note { max-width: 100%; }
+  .metrics { max-width: 100%; }
+  .c1,.c2,.c3 { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><div class="eline"></div>AI Content Agency &mdash; International</div>
+    <h1 class="hero-title">
+      <span>SOCIAL</span><br>
+      <span class="outline">MEDIA</span><br>
+      <span class="blue">PACKAGES</span>
+    </h1>
+    <p class="hero-desc">Cinematic AI-generated reels, branded ad creatives, and full social management. Priced for international markets. Delivered with precision.</p>
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">25+</div><div class="metric-label">Reels / Month</div></div>
+      <div class="metric"><div class="metric-num">3</div><div class="metric-label">Platforms</div></div>
+      <div class="metric"><div class="metric-num">5</div><div class="metric-label">AI Tools</div></div>
+      <div class="metric"><div class="metric-num">5</div><div class="metric-label">Revision Rounds</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-link active" onclick="navTo('#glossary',this)">What's Included</div>
+  <div class="nav-link" onclick="navTo('#packages',this)">Packages</div>
+  <div class="nav-link" onclick="navTo('#addons',this)">Add-ons</div>
+  <div class="nav-link" onclick="navTo('#payment',this)">Payment</div>
+</nav>
+
+<!-- GLOSSARY -->
+<section class="section gloss-section reveal" id="glossary">
+  <div class="section-tag"><div class="tline"></div>Know exactly what you're buying</div>
+  <h2 class="section-title">Every deliverable,<br>defined.</h2>
+  <div class="section-sub">No jargon left unexplained.</div>
+  <div class="gloss-grid">
+    <div class="gloss-item"><div class="gloss-num">01</div><div class="gloss-term">Short-form Reel</div><div class="gloss-def">A 15–60 second vertical video for Instagram Reels, TikTok, or YouTube Shorts. AI-scripted, voiced, captioned, and sound-designed using Higgsfield's cinematic engine and HeyGen avatars. No filming required.</div></div>
+    <div class="gloss-item"><div class="gloss-num">02</div><div class="gloss-term">Branded Still Post</div><div class="gloss-def">A static image for your feed — spotlights, quotes, offers, announcements. Designed to your brand colors and fonts so your grid looks consistent and intentional, not random.</div></div>
+    <div class="gloss-item"><div class="gloss-num">03</div><div class="gloss-term">Ad Creative Set</div><div class="gloss-def">3–5 ready-to-run paid ad visuals for Meta or TikTok Ads Manager. Multiple sizes (1:1, 4:5, 9:16), headline copy, hook variants, and CTA overlays — the fuel for your paid campaigns.</div></div>
+    <div class="gloss-item"><div class="gloss-num">04</div><div class="gloss-term">Brand Color Kit</div><div class="gloss-def">Your primary, secondary, and accent colors as hex codes with usage rules. Applied to every reel, post, and ad so your brand is instantly recognisable mid-scroll.</div></div>
+    <div class="gloss-item"><div class="gloss-num">05</div><div class="gloss-term">Brand Identity Document</div><div class="gloss-def">A full PDF: logo rules, color palette, typography, tone of voice, and visual do's and don'ts. Your creative bible — shared with any collaborator to maintain consistency.</div></div>
+    <div class="gloss-item"><div class="gloss-num">06</div><div class="gloss-term">Content Bible</div><div class="gloss-def">Full content strategy: monthly pillars, posting schedule, audience personas, platform tone, and a 90-day roadmap. Your north star for everything published.</div></div>
+    <div class="gloss-item"><div class="gloss-num">07</div><div class="gloss-term">Performance Report</div><div class="gloss-def">A clear breakdown of reach, impressions, engagement rate, follower growth, and top posts — with actionable recommendations on what to scale next month.</div></div>
+    <div class="gloss-item"><div class="gloss-num">08</div><div class="gloss-term">Revision Round</div><div class="gloss-def">One complete pass of your feedback applied across all deliverables. You share notes, we implement. Authority clients get 5 full rounds, unlimited on final outputs.</div></div>
+    <div class="gloss-item"><div class="gloss-num">09</div><div class="gloss-term">HeyGen Avatar</div><div class="gloss-def">A photorealistic AI spokesperson — stock or a custom clone of you — that presents to camera in your reels. No filming, no studio, no scheduling headaches.</div></div>
+    <div class="gloss-item"><div class="gloss-num">10</div><div class="gloss-term">A/B Copy Variants</div><div class="gloss-def">Two or more versions of the same ad with different hooks, headlines, or CTAs. Run split tests, find what converts, then scale the winner with confidence.</div></div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="section pkg-section reveal" id="packages">
+  <div class="section-tag"><div class="tline"></div>USD Pricing</div>
+  <h2 class="section-title">Three tiers.<br>One clear choice.</h2>
+  <div class="section-sub">Monthly retainer · 3-month minimum recommended</div>
+  <div class="pkg-grid">
+
+    <div class="pkg-card low">
+      <div class="pkg-stripe"></div>
+      <div class="pkg-head">
+        <div class="pkg-tier">Starter</div>
+        <div class="pkg-name">Launch</div>
+        <div class="price-row"><span class="price-sym">$</span><span class="price-amt">599</span><span class="price-per">/ mo</span></div>
+      </div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-body">
+        <p class="pkg-summary">For startups and SMBs building a serious social presence. AI-produced video and polished branded posts — consistent, scroll-stopping, built to convert.</p>
+        <div><div class="feat-label">Video Content</div>
+        <ul class="feat-list"><li>8 AI-generated short-form reels</li><li>1 platform — Instagram or TikTok</li><li>AI voiceover + royalty-free audio</li><li>Auto-captions on all reels</li></ul></div>
+        <div><div class="feat-label">Stills &amp; Branding</div>
+        <ul class="feat-list"><li>4 branded still posts</li><li>Basic brand color kit</li><li>Caption copywriting for all posts</li></ul></div>
+        <div><div class="feat-label">Reporting</div>
+        <ul class="feat-list"><li>Monthly performance report</li><li>Email support — 48hr response</li></ul></div>
+      </div>
+      <div class="pkg-footer"><strong>2</strong> revision rounds / month</div>
+    </div>
+
+    <div class="pkg-card mid">
+      <div class="pkg-stripe"></div>
+      <div class="pkg-popular">Most Popular</div>
+      <div class="pkg-head">
+        <div class="pkg-tier">Growth</div>
+        <div class="pkg-name">Scale</div>
+        <div class="price-row"><span class="price-sym">$</span><span class="price-amt">1,299</span><span class="price-per">/ mo</span></div>
+      </div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-body">
+        <p class="pkg-summary">High-volume, high-quality. HeyGen avatar reels, multi-platform management, paid ad creatives, and a brand identity that makes you look like a $10M company.</p>
+        <div><div class="feat-label">Video Content</div>
+        <ul class="feat-list"><li>16 reels with HeyGen AI avatars</li><li>2 platforms — Instagram + TikTok or LinkedIn</li><li>AI voiceover, captions, sound design</li><li>1 ad creative set — 3–5 variants</li></ul></div>
+        <div><div class="feat-label">Stills &amp; Branding</div>
+        <ul class="feat-list"><li>8 branded still posts</li><li>Full brand identity document</li><li>Hashtag strategy + caption copy</li></ul></div>
+        <div><div class="feat-label">Reporting</div>
+        <ul class="feat-list"><li>Bi-weekly performance reports</li><li>Priority Slack or email support</li></ul></div>
+      </div>
+      <div class="pkg-footer"><strong>3</strong> revision rounds / month</div>
+    </div>
+
+    <div class="pkg-card high">
+      <div class="pkg-stripe"></div>
+      <div class="pkg-head">
+        <div class="pkg-tier">Premium</div>
+        <div class="pkg-name">Authority</div>
+        <div class="price-row"><span class="price-sym">$</span><span class="price-amt">2,999</span><span class="price-per">/ mo</span></div>
+      </div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-body">
+        <p class="pkg-summary">Enterprise-grade content at a fraction of traditional agency cost. Higgsfield cinematic reels, 3 ad creative sets, content bible, and a dedicated strategist on your account.</p>
+        <div><div class="feat-label">Video Content</div>
+        <ul class="feat-list"><li>25+ cinematic reels — Higgsfield + HeyGen</li><li>3 platforms managed end-to-end</li><li>Custom AI voiceover + audio branding</li><li>3 ad creative sets + A/B copy variants</li></ul></div>
+        <div><div class="feat-label">Stills &amp; Branding</div>
+        <ul class="feat-list"><li>12 premium still posts</li><li>Full brand guidelines + content bible</li><li>90-day content calendar</li></ul></div>
+        <div><div class="feat-label">Reporting &amp; Support</div>
+        <ul class="feat-list"><li>Weekly strategy call + detailed reports</li><li>Dedicated account manager</li><li>Same-day Slack support</li></ul></div>
+      </div>
+      <div class="pkg-footer"><strong>5</strong> revision rounds — unlimited on finals</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ADDONS -->
+<section class="section addons-section reveal" id="addons">
+  <div class="section-tag"><div class="tline"></div>Flexible</div>
+  <h2 class="section-title">Add-ons</h2>
+  <div class="section-sub">Available as bolt-ons to any package.</div>
+  <div class="addons-grid">
+    <div class="addon-item"><span class="addon-name">Extra Reel</span><span class="addon-price">$55 / reel</span></div>
+    <div class="addon-item"><span class="addon-name">Extra Ad Creative Set</span><span class="addon-price">$180 / set</span></div>
+    <div class="addon-item"><span class="addon-name">Rushed Delivery — 48hr</span><span class="addon-price">$120</span></div>
+    <div class="addon-item"><span class="addon-name">Custom HeyGen Avatar</span><span class="addon-price">$350 one-time</span></div>
+    <div class="addon-item"><span class="addon-name">Brand Identity Standalone</span><span class="addon-price">$450 one-time</span></div>
+    <div class="addon-item"><span class="addon-name">Onboarding &amp; Brand Audit</span><span class="addon-price">$200 one-time</span></div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="section payment-section reveal" id="payment">
+  <div class="section-tag"><div class="tline" style="background:rgba(77,116,255,0.5)"></div>Seamless</div>
+  <h2 class="section-title">Payment methods</h2>
+  <div class="section-sub">Worldwide payments accepted — no friction.</div>
+  <div class="payment-grid">
+    <div class="payment-item"><div class="pay-icon">💳</div><div class="pay-name">Stripe</div><div class="pay-note">Card &amp; bank transfer</div></div>
+    <div class="payment-item"><div class="pay-icon">🏦</div><div class="pay-name">Wise</div><div class="pay-note">Low-fee international</div></div>
+    <div class="payment-item"><div class="pay-icon">🌐</div><div class="pay-name">Payoneer</div><div class="pay-note">Global marketplace</div></div>
+    <div class="payment-item"><div class="pay-icon">📱</div><div class="pay-name">PayPal</div><div class="pay-note">On request</div></div>
+  </div>
+</section>
+
+<!-- CTA CLOSE -->
+<div class="cta-close reveal">
+  <div class="cta-tag"><div class="tline"></div>Let's build something</div>
+  <h2 class="cta-title">Ready to<br>scale your brand?</h2>
+  <p class="cta-sub">3-month minimum retainer · Onboarding fee $150–$400 (one-time) · Get in touch to begin</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">AI<span>.</span>Agency</div>
+  <div class="footer-note">Prices valid for 2025. Long-term clients (6+ months) receive preferential rates. All packages are monthly retainers billed in USD.</div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+// Nav scroll
+function navTo(id, el) {
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  const target = document.querySelector(id);
+  if (target) target.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Scroll spy
+const sections = ['#glossary','#packages','#addons','#payment'];
+const links = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let cur = 0;
+  sections.forEach((id, i) => {
+    const el = document.querySelector(id);
+    if (el && el.getBoundingClientRect().top < 120) cur = i;
+  });
+  links.forEach((l, i) => l.classList.toggle('active', i === cur));
+}, { passive: true });
+</script>
+</body>
+</html>

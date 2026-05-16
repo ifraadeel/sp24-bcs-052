@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Social Media Packages — Pakistan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --bg: #080e09;
+  --surface: #0d1a0f;
+  --surface2: #121f14;
+  --emerald: #1a7a3c;
+  --emerald-light: #25a050;
+  --emerald-glow: #2ecc71;
+  --gold: #c9a84c;
+  --gold-light: #e8c96d;
+  --cream: #f0ead8;
+  --muted: #6b7c6e;
+  --border: rgba(26,122,60,0.22);
+  --border-gold: rgba(201,168,76,0.28);
+  --text: #e8f0ea;
+  --text-dim: #8a9e8d;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,122,60,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,122,60,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 24px 72px;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+}
+.orb1 {
+  width: min(460px, 90vw); height: min(460px, 90vw);
+  background: radial-gradient(circle, rgba(26,122,60,0.28) 0%, transparent 70%);
+  top: -80px; right: -80px;
+  animation: float 9s ease-in-out infinite;
+}
+.orb2 {
+  width: min(260px, 60vw); height: min(260px, 60vw);
+  background: radial-gradient(circle, rgba(201,168,76,0.13) 0%, transparent 70%);
+  bottom: 80px; left: 0;
+  animation: float 12s ease-in-out infinite reverse;
+}
+@keyframes float { 0%,100%{transform:translate(0,0)} 50%{transform:translate(18px,-26px)} }
+
+.hero-inner { position: relative; z-index: 1; max-width: 640px; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--emerald-glow);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .1s;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 9vw, 84px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .25s;
+}
+.hero-title .gold { color: var(--gold); font-style: italic; }
+.hero-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 4vw, 34px);
+  font-style: italic;
+  color: var(--emerald-glow);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .4s;
+}
+.hero-desc {
+  font-size: clamp(14px, 3.5vw, 15px);
+  color: var(--text-dim);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .55s;
+}
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 36px;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .7s;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 5vw, 34px);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeUp .8s ease forwards 1.1s;
+}
+.scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--emerald-glow), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* TOOLS */
+.tools-strip {
+  position: relative; z-index: 1;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tools-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: max-content;
+}
+.tools-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.tool { font-size: 13px; color: var(--text-dim); white-space: nowrap; }
+
+/* SECTION */
+.section {
+  position: relative; z-index: 1;
+  padding: 64px 24px;
+}
+.section-tag {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--emerald-glow);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 6vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
+
+/* GLOSSARY */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 2px;
+}
+.gloss-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: background .25s;
+}
+.gloss-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: var(--emerald-glow);
+  transition: height .3s ease;
+}
+.gloss-item:hover::before { height: 100%; }
+.gloss-item:hover { background: var(--surface2); }
+.gloss-term {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+.gloss-def { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+/* PACKAGES */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+.pkg-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform .35s ease, border-color .3s;
+  position: relative;
+}
+.pkg-card.mid { border-color: var(--gold); }
+.pkg-card:hover { transform: translateY(-5px); border-color: rgba(46,204,113,.45); }
+.pkg-card.mid:hover { border-color: var(--gold-light); }
+
+.pkg-glow {
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
+}
+.pkg-card.low  .pkg-glow { background: rgba(26,122,60,.22); }
+.pkg-card.mid  .pkg-glow { background: rgba(201,168,76,.18); }
+.pkg-card.high .pkg-glow { background: rgba(46,204,113,.2); }
+
+.pkg-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 4px 9px;
+  font-weight: 600;
+  border-radius: 2px;
+}
+.pkg-head { padding: 28px 24px 20px; position: relative; }
+.pkg-tier {
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.pkg-card.mid .pkg-tier { color: var(--gold); }
+
+.pkg-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4.5vw, 32px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.pkg-card.low  .pkg-name { color: var(--emerald-light); }
+.pkg-card.mid  .pkg-name { color: var(--gold-light); }
+.pkg-card.high .pkg-name { color: var(--emerald-glow); }
+
+.pkg-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.pkg-cur { font-size: 13px; color: var(--muted); }
+.pkg-amt {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1;
+}
+.pkg-per { font-size: 12px; color: var(--muted); }
+
+.pkg-divider { height: 1px; background: linear-gradient(to right, var(--border), transparent); margin: 0 24px; }
+.pkg-card.mid .pkg-divider { background: linear-gradient(to right, var(--border-gold), transparent); }
+
+.pkg-body {
+  padding: 20px 24px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pkg-summary {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.pkg-card.mid .pkg-summary { border-bottom-color: var(--border-gold); }
+
+.feat-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--emerald-glow);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.pkg-card.mid .feat-label { color: var(--gold); }
+
+.feat-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.feat-list li {
+  font-size: 13px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.45;
+}
+.feat-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--emerald);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.pkg-card.mid  .feat-list li::before { background: var(--gold); }
+.pkg-card.high .feat-list li::before { background: var(--emerald-glow); }
+
+.pkg-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,.18);
+  font-size: 12px;
+  color: var(--muted);
+}
+.pkg-card.mid .pkg-footer { border-top-color: var(--border-gold); }
+.pkg-footer strong { color: var(--cream); font-weight: 500; }
+
+/* ADDONS */
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 2px;
+}
+.addon-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: background .2s;
+}
+.addon-item:hover { background: var(--surface2); }
+.addon-name { font-size: 13px; color: var(--text-dim); }
+.addon-price { font-size: 13px; color: var(--gold); font-weight: 500; white-space: nowrap; }
+
+/* CTA CLOSE */
+.cta-close {
+  position: relative; z-index: 1;
+  padding: 72px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+.cta-close::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: min(560px, 90vw); height: 280px;
+  background: radial-gradient(ellipse, rgba(26,122,60,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 7vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  position: relative;
+}
+.cta-title em { font-style: italic; color: var(--gold); }
+.cta-sub { font-size: 14px; color: var(--muted); position: relative; line-height: 1.6; }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--emerald-glow);
+}
+.footer-note { font-size: 12px; color: var(--muted); max-width: 420px; line-height: 1.65; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .hero { padding: 68px 18px 64px; }
+  .section { padding: 52px 18px; }
+  .pkg-head { padding: 22px 18px 16px; }
+  .pkg-body { padding: 16px 18px 20px; }
+  .pkg-divider { margin: 0 18px; }
+  .pkg-footer { padding: 12px 18px; }
+  .gloss-item { padding: 18px 18px; }
+  .addon-item { padding: 13px 16px; }
+  footer { flex-direction: column; }
+  .footer-note { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">AI Content Agency &mdash; Pakistan</div>
+    <h1 class="hero-title">Content That<br><span class="gold">Commands</span></h1>
+    <div class="hero-sub">Social Media Packages 2025</div>
+    <p class="hero-desc">AI-powered reels, branded ad creatives, and full social management — built for Pakistani businesses ready to dominate their feed.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Tiers</div></div>
+      <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Reels / Mo</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">AI Tools</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Platforms</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<div class="tools-strip">
+  <div class="tools-inner">
+    <span class="tools-label">Powered by</span>
+    <span class="tool">Higgsfield AI</span>
+    <span class="tool">HeyGen</span>
+    <span class="tool">Claude AI</span>
+    <span class="tool">Flow</span>
+    <span class="tool">Meta Ads</span>
+    <span class="tool">TikTok Ads</span>
+  </div>
+</div>
+
+<section class="section reveal">
+  <div class="section-tag">Know what you're getting</div>
+  <h2 class="section-title">Every term, <em>explained</em></h2>
+  <div class="section-sub">No surprises. Every deliverable defined in plain language.</div>
+  <div class="glossary-grid">
+    <div class="gloss-item"><div class="gloss-term">Short-form Reel</div><div class="gloss-def">A 15–60 second vertical video for Instagram Reels, TikTok, or YouTube Shorts. AI-scripted, voiced, captioned, and sound-designed using Higgsfield and HeyGen. No filming required.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Branded Still Post</div><div class="gloss-def">A static image for your feed — spotlights, quotes, offers, announcements. Designed to your brand colors and fonts so your grid looks consistent and intentional, not random.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Ad Creative Set</div><div class="gloss-def">3–5 ready-to-run paid ad visuals for Meta or TikTok Ads Manager. Multiple sizes (1:1, 4:5, 9:16), headline copy, hook variants, and CTA overlays — the fuel for your paid campaigns.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Brand Color Kit</div><div class="gloss-def">Your primary, secondary, and accent colors as hex codes with usage rules. Applied to every reel, post, and ad so your brand is instantly recognisable mid-scroll.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Brand Identity Document</div><div class="gloss-def">A full PDF: logo rules, color palette, typography, tone of voice, and visual do's and don'ts. Your creative bible — keeps every collaborator on-brand.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Content Bible</div><div class="gloss-def">Full content strategy: monthly pillars, posting schedule, audience personas, platform tone, and a 90-day roadmap. Your north star for everything published.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Performance Report</div><div class="gloss-def">A clear breakdown of reach, impressions, engagement rate, follower growth, and top posts — with actionable recommendations on what to scale next month.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Revision Round</div><div class="gloss-def">One complete pass of your feedback applied across all deliverables. You share notes, we implement every change. Premium gets 5 rounds, unlimited on finals.</div></div>
+    <div class="gloss-item"><div class="gloss-term">HeyGen Avatar</div><div class="gloss-def">A photorealistic AI spokesperson — stock or a custom clone of you — that presents to camera in your reels. No filming, no studio. Available from Growth tier upward.</div></div>
+    <div class="gloss-item"><div class="gloss-term">A/B Copy Variants</div><div class="gloss-def">Two or more versions of the same ad with different hooks, headlines, or CTAs. Run split tests, find what converts, then scale the winner with confidence.</div></div>
+  </div>
+</section>
+
+<section class="section reveal" style="padding-top:0">
+  <div class="section-tag">Pakistan Pricing — PKR</div>
+  <h2 class="section-title">Choose your <em>tier</em></h2>
+  <div class="section-sub">Monthly retainer · 3-month minimum recommended</div>
+  <div class="pkg-grid">
+
+    <div class="pkg-card low">
+      <div class="pkg-glow"></div>
+      <div class="pkg-head">
+        <div class="pkg-tier">Starter Tier</div>
+        <div class="pkg-name">Spark</div>
+        <div class="pkg-price"><span class="pkg-cur">PKR</span><span class="pkg-amt">50,000</span><span class="pkg-per">/ month</span></div>
+      </div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-body">
+        <p class="pkg-summary">For small businesses establishing a professional social presence. AI-produced video and branded visuals — without the overhead of a full creative team.</p>
+        <div><div class="feat-label">Video Content</div>
+        <ul class="feat-list"><li>8 AI-generated short-form reels</li><li>1 platform — Instagram or TikTok</li><li>AI voiceover + royalty-free audio</li><li>Auto-captions on all reels</li></ul></div>
+        <div><div class="feat-label">Stills &amp; Branding</div>
+        <ul class="feat-list"><li>4 branded still posts</li><li>Basic brand color kit</li><li>Caption copywriting for all posts</li></ul></div>
+        <div><div class="feat-label">Reporting</div>
+        <ul class="feat-list"><li>Monthly performance report</li><li>Email support — 48hr response</li></ul></div>
+      </div>
+      <div class="pkg-footer"><strong>2 revision rounds</strong> per month</div>
+    </div>
+
+    <div class="pkg-card mid">
+      <div class="pkg-glow"></div>
+      <div class="pkg-badge">Most Popular</div>
+      <div class="pkg-head">
+        <div class="pkg-tier">Growth Tier</div>
+        <div class="pkg-name">Momentum</div>
+        <div class="pkg-price"><span class="pkg-cur">PKR</span><span class="pkg-amt">80,000</span><span class="pkg-per">/ month</span></div>
+      </div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-body">
+        <p class="pkg-summary">For growing brands that want real volume — HeyGen avatar reels, multi-platform coverage, and a brand identity that makes every post unmistakably yours.</p>
+        <div><div class="feat-label">Video Content</div>
+        <ul class="feat-list"><li>16 reels with HeyGen AI avatars</li><li>2 platforms — Instagram + TikTok or Facebook</li><li>AI voiceover, captions, sound design</li><li>1 ad creative set — 3 variants for Meta Ads</li></ul></div>
+        <div><div class="feat-label">Stills &amp; Branding</div>
+        <ul class="feat-list"><li>8 branded still posts</li><li>Full brand identity document</li><li>Hashtag strategy + caption copy</li></ul></div>
+        <div><div class="feat-label">Reporting</div>
+        <ul class="feat-list"><li>Bi-weekly performance reports</li><li>Priority WhatsApp + email support</li></ul></div>
+      </div>
+      <div class="pkg-footer"><strong>3 revision rounds</strong> per month</div>
+    </div>
+
+    <div class="pkg-card high">
+      <div class="pkg-glow"></div>
+      <div class="pkg-head">
+        <div class="pkg-tier">Premium Tier</div>
+        <div class="pkg-name">Dominance</div>
+        <div class="pkg-price"><span class="pkg-cur">PKR</span><span class="pkg-amt">1,50,000</span><span class="pkg-per">/ month</span></div>
+      </div>
+      <div class="pkg-divider"></div>
+      <div class="pkg-body">
+        <p class="pkg-summary">The full arsenal. Higgsfield cinematic reels, HeyGen avatars, a complete content bible, 3 platforms, and a dedicated account manager who treats your brand like their own.</p>
+        <div><div class="feat-label">Video Content</div>
+        <ul class="feat-list"><li>25+ cinematic reels — Higgsfield + HeyGen</li><li>3 platforms managed end-to-end</li><li>Custom AI voiceover + audio branding</li><li>3 ad creative sets + A/B copy variants</li></ul></div>
+        <div><div class="feat-label">Stills &amp; Branding</div>
+        <ul class="feat-list"><li>12 premium still posts</li><li>Full brand guidelines + content bible</li><li>90-day content calendar</li></ul></div>
+        <div><div class="feat-label">Reporting &amp; Support</div>
+        <ul class="feat-list"><li>Weekly strategy call + detailed reports</li><li>Dedicated account manager</li><li>Same-day WhatsApp support</li></ul></div>
+      </div>
+      <div class="pkg-footer"><strong>5 revision rounds</strong> — unlimited on finals</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section reveal" style="padding-top:0">
+  <div class="section-tag">Bolt-ons</div>
+  <h2 class="section-title">Add-ons <em>&amp; extras</em></h2>
+  <div class="section-sub">Available on top of any package.</div>
+  <div class="addons-grid">
+    <div class="addon-item"><span class="addon-name">Extra Reel</span><span class="addon-price">PKR 4,000</span></div>
+    <div class="addon-item"><span class="addon-name">Extra Ad Creative Set</span><span class="addon-price">PKR 12,000</span></div>
+    <div class="addon-item"><span class="addon-name">Rushed Delivery — 48hr</span><span class="addon-price">PKR 8,000</span></div>
+    <div class="addon-item"><span class="addon-name">Custom HeyGen Avatar</span><span class="addon-price">PKR 25,000 one-time</span></div>
+    <div class="addon-item"><span class="addon-name">Brand Identity Standalone</span><span class="addon-price">PKR 30,000 one-time</span></div>
+    <div class="addon-item"><span class="addon-name">Onboarding &amp; Brand Audit</span><span class="addon-price">PKR 15,000 one-time</span></div>
+  </div>
+</section>
+
+<div class="cta-close reveal">
+  <h2 class="cta-title">Ready to <em>dominate</em><br>your feed?</h2>
+  <p class="cta-sub">3-month minimum retainer recommended &mdash; get in touch to get started.</p>
+</div>
+
+<footer>
+  <div class="footer-brand">AI Content Agency</div>
+  <div class="footer-note">Prices valid for 2025. Long-term clients (6+ months) receive preferential rates. A one-time onboarding fee of PKR 10,000–25,000 applies on sign-up.</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
