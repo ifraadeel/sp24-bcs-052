@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Oura Shop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+
+    /* Filter Section */
+    .filters {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filter-group label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .filter-group input,
+    .filter-group select {
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+
+    .filter-group input:focus,
+    .filter-group select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .filter-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.3s;
+      align-self: flex-end;
+    }
+
+    .filter-btn:hover {
+      background: #5568d3;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: white;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border-color: #667eea;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .product-card .price {
+      color: #667eea;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .product-card .category {
+      display: inline-block;
+      background: #f0f0f0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .product-card .rating {
+      color: #ffc107;
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .product-card .stock {
+      color: #28a745;
+      font-weight: 600;
+    }
+
+    .product-card .out-of-stock {
+      color: #dc3545;
+      font-weight: 600;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .pagination a,
+    .pagination span {
+      padding: 10px 15px;
+      border: 2px solid #667eea;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #667eea;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .pagination .active {
+      background: #667eea;
+      color: white;
+    }
+
+    .pagination .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .no-products {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛍️ Oura Shop - Product Catalog</h1>
+
+    <!-- Filters -->
+    <form class="filters" method="GET" action="/products">
+      <div class="filter-group">
+        <label for="search">Search Products</label>
+        <input type="text" id="search" name="search" placeholder="Search by name..." value="<%= search %>">
+      </div>
+
+      <div class="filter-group">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="">All Categories</option>
+          <% categories.forEach(cat => { %>
+            <option value="<%= cat %>" <%= category === cat ? 'selected' : '' %>><%= cat %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="minPrice">Min Price (Rs.)</label>
+        <input type="number" id="minPrice" name="minPrice" placeholder="0" value="<%= minPrice %>">
+      </div>
+
+      <div class="filter-group">
+        <label for="maxPrice">Max Price (Rs.)</label>
+        <input type="number" id="maxPrice" name="maxPrice" placeholder="1000000" value="<%= maxPrice %>">
+      </div>
+
+      <div class="filter-group">
+        <label>&nbsp;</label>
+        <button type="submit" class="filter-btn">Apply Filters</button>
+      </div>
+    </form>
+
+    <!-- Products Grid -->
+    <% if (products.length > 0) { %>
+      <div class="products-grid">
+        <% products.forEach(product => { %>
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <h3><%= product.name %></h3>
+            <div class="price">Rs. <%= product.price.toLocaleString() %></div>
+            <span class="category"><%= product.category %></span>
+            <div class="rating">⭐ <%= product.rating %> / 5</div>
+            <% if (product.stock > 0) { %>
+              <div class="stock">In Stock: <%= product.stock %> units</div>
+            <% } else { %>
+              <div class="out-of-stock">Out of Stock</div>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <% if (currentPage > 1) { %>
+          <a href="?page=<%= currentPage - 1 %>&search=<%= search %>&category=<%= category %>&minPrice=<%= minPrice %>&maxPrice=<%= maxPrice %>">Previous</a>
+        <% } else { %>
+          <span class="disabled">Previous</span>
+        <% } %>
+
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <a href="?page=<%= i %>&search=<%= search %>&category=<%= category %>&minPrice=<%= minPrice %>&maxPrice=<%= maxPrice %>" 
+             class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+
+        <% if (currentPage < totalPages) { %>
+          <a href="?page=<%= currentPage + 1 %>&search=<%= search %>&category=<%= category %>&minPrice=<%= minPrice %>&maxPrice=<%= maxPrice %>">Next</a>
+        <% } else { %>
+          <span class="disabled">Next</span>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="no-products">
+        No products found. Try adjusting your filters.
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

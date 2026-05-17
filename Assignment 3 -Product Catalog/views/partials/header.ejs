@@ -1,0 +1,33 @@
+<!-- views/partials/header.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/OuraRingStyling.css">
+</head>
+<body>
+
+<!-- Top banner -->
+<div class="top-banner">
+  <p><%= banner %></p>
+</div>
+
+<!-- Top Menu Bar -->
+<header class="nav-header">
+    <div class="nav-items">
+
+        <div class="logo">ŌURA</div>
+
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
+        <div class="nav-list" id="nav-list">
+            <% navItems.forEach(function(item) { %>
+                <span class="nav-item"><%= item %></span>
+            <% }); %>
+        </div>
+
+        <button class="cart-icon">🛒</button>
+    </div>
+</header>
