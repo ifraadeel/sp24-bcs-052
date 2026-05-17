@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product — Oura Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: #f0ebe3; color: #1a1a1a; }
+
+    .page-header { margin-bottom: 36px; }
+    .page-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #8a8278; margin-bottom: 8px;
+    }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; }
+
+    .form-card {
+      background: #fdfcfa;
+      border: 1px solid #d8d2c8;
+      border-radius: 10px;
+      padding: 40px 44px;
+      max-width: 680px;
+    }
+
+    .error-banner {
+      background: #fdf0f0;
+      border: 1px solid #e0c8c8;
+      color: #a05252;
+      padding: 12px 18px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      margin-bottom: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group { display: flex; flex-direction: column; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a8278;
+      margin-bottom: 7px;
+    }
+
+    input, select, textarea {
+      padding: 11px 14px;
+      border: 1px solid #d8d2c8;
+      border-radius: 5px;
+      background: #f0ebe3;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #1a1a1a;
+    }
+    textarea { resize: vertical; min-height: 90px; }
+
+    /* Image upload */
+    .upload-area {
+      border: 2px dashed #d8d2c8;
+      border-radius: 5px;
+      padding: 24px;
+      text-align: center;
+      background: #f0ebe3;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .upload-area:hover { border-color: #1a1a1a; }
+    .upload-area input[type="file"] { display: none; }
+    .upload-label {
+      font-size: 0.85rem;
+      color: #8a8278;
+      cursor: pointer;
+      display: block;
+    }
+    .upload-label span { color: #1a1a1a; font-weight: 500; text-decoration: underline; }
+    #fileName { font-size: 0.8rem; color: #5a8a5a; margin-top: 6px; display: block; }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid #e4ddd3;
+    }
+
+    .btn-save {
+      padding: 12px 32px;
+      background: #1a1a1a;
+      color: #fdfcfa;
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-save:hover { background: #3a3a3a; }
+
+    .btn-cancel {
+      padding: 12px 28px;
+      background: transparent;
+      color: #8a8278;
+      border: 1px solid #d8d2c8;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .btn-cancel:hover { color: #1a1a1a; border-color: #1a1a1a; }
+  </style>
+</head>
+<body>
+
+  <%- include('../partials/adminNav', { activePage: 'add' }) %>
+
+  <div class="admin-main">
+
+    <div class="page-header">
+      <p class="page-label">Admin Panel</p>
+      <h1 class="page-title">Add New Product</h1>
+    </div>
+
+    <div class="form-card">
+
+      <!-- Error message if validation fails -->
+      <% if (error) { %>
+        <div class="error-banner">⚠ <%= error %></div>
+      <% } %>
+
+      <!--
+        enctype="multipart/form-data" is REQUIRED when the form includes a file upload.
+        Without it, the image file won't reach the server.
+      -->
+      <form method="POST" action="/admin/new" enctype="multipart/form-data">
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label for="name">Product Name *</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Oura Ring Gen 3" required>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price (Rs.) *</label>
+            <input type="number" id="price" name="price" placeholder="e.g. 45000" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category *</label>
+            <input type="text" id="category" name="category" placeholder="e.g. Wearables">
+          </div>
+
+          <div class="form-group">
+            <label for="stock">Stock Quantity</label>
+            <input type="number" id="stock" name="stock" placeholder="0" min="0">
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Rating (0–5)</label>
+            <input type="number" id="rating" name="rating" placeholder="0" min="0" max="5" step="0.1">
+          </div>
+
+          <div class="form-group full">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Brief product description…"></textarea>
+          </div>
+
+          <div class="form-group full">
+            <label>Product Image</label>
+            <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+              <input type="file" id="imageInput" name="image" accept="image/*"
+                     onchange="document.getElementById('fileName').textContent = this.files[0]?.name || ''">
+              <label class="upload-label">
+                Click to <span>browse</span> or drag an image here
+              </label>
+              <span id="fileName"></span>
+            </div>
+          </div>
+
+        </div><!-- /form-grid -->
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Save Product</button>
+          <a href="/admin" class="btn-cancel">Cancel</a>
+        </div>
+      </form>
+
+    </div><!-- /form-card -->
+  </div><!-- /admin-main -->
+
+</body>
+</html>
