@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-const Product = require("./models/Product");
+const Product = require("./models/Products");
 const User = require("./models/User");
 const Order = require("./models/Order");
 const bcrypt = require("bcryptjs");
+const Products = require("./models/Products");
 
 mongoose
   .connect("mongodb://localhost:27017/oura_shop")
@@ -21,12 +22,12 @@ const products = [
 async function seedDB() {
   try {
     // Clear existing data
-    await Product.deleteMany({});
+    await Products.deleteMany({});
     await User.deleteMany({});
     await Order.deleteMany({});
 
     // Insert products
-    const insertedProducts = await Product.insertMany(products);
+    const insertedProducts = await Products.insertMany(products);
     console.log("✅ Products seeded");
 
     // Create admin user

@@ -1,13 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("../models/Order");
-const Product = require("../models/Product");
+const Products = require("../models/Products");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
+
+// GET /admin/dashboard
+router.get("/dashboard", isAuthenticated, isAdmin, async (req, res) => {
+  try {
+    const totalProducts = await Products.countDocuments();
+    const totalOrders = await Order.countDocuments();
+    
+    res.render("admin/dashboard", {
+      layout: "layouts/main",
+      title: "Admin Dashboard",
+      totalProducts,
+      totalOrders
+    });
+  } catch (error) {
+    console.error("Dashboard error:", error);
+    res.status(500).send("Error loading dashboard");
+  }
+});
 
 // GET /admin/sales - Render sales dashboard
 router.get("/sales", isAuthenticated, isAdmin, async (req, res) => {
   try {
-    // Calculate initial stats
     const stats = await calculateSalesStats();
     
     res.render("admin/sales", {
@@ -21,7 +38,7 @@ router.get("/sales", isAuthenticated, isAdmin, async (req, res) => {
   }
 });
 
-// GET /api/sales-data - Return JSON for AJAX polling
+// GET /admin/api/sales-data - Return JSON for AJAX polling
 router.get("/api/sales-data", isAuthenticated, isAdmin, async (req, res) => {
   try {
     const stats = await calculateSalesStats();
@@ -34,11 +51,8 @@ router.get("/api/sales-data", isAuthenticated, isAdmin, async (req, res) => {
 
 // Helper function to calculate sales statistics
 async function calculateSalesStats() {
-  // Total revenue and orders using aggregation
   const revenueStats = await Order.aggregate([
-    {
-      $match: { status: "completed" }
-    },
+    { $match: { status: "completed" } },
     {
       $group: {
         _id: null,
@@ -48,7 +62,6 @@ async function calculateSalesStats() {
     }
   ]);
 
-  // Top-selling product
   const topProducts = await Order.aggregate([
     { $match: { status: "completed" } },
     { $unwind: "$products" },
@@ -64,7 +77,6 @@ async function calculateSalesStats() {
     { $limit: 1 }
   ]);
 
-  // Recent orders
   const recentOrders = await Order.find({ status: "completed" })
     .sort({ createdAt: -1 })
     .limit(5)
