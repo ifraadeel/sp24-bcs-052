@@ -1,0 +1,99 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/OuraRingStyling.css">
+</head>
+<body>
+
+<!-- Top banner -->
+<div class="top-banner">
+  <p><%= banner %></p>
+</div>
+
+<!-- Navigation -->
+<header class="nav-header">
+  <div class="nav-items">
+    <div class="logo">ŌURA</div>
+    <button class="hamburger" id="hamburger">☰</button>
+    <div class="nav-list" id="nav-list">
+      <a href="/products" class="nav-item">Shop</a>
+      <a href="/admin" class="nav-item">Admin Panel</a>
+    </div>
+    <div class="auth-buttons">
+      <% if (user) { %>
+        <span class="user-name"><%= user.name %></span>
+        <a href="/auth/logout" class="btn btn-logout">Logout</a>
+      <% } else { %>
+        <a href="/auth/login" class="btn btn-login">Login</a>
+        <a href="/auth/register" class="btn btn-register">Register</a>
+      <% } %>
+    </div>
+  </div>
+</header>
+
+<!-- Flash Messages -->
+<% if (success_msg.length > 0) { %>
+  <div class="alert alert-success"><%= success_msg %></div>
+<% } %>
+<% if (error_msg.length > 0) { %>
+  <div class="alert alert-error"><%= error_msg %></div>
+<% } %>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="main-title">Oura Ring 4</h1>
+    <p class="description">Sleeker. Smarter. Made for you.</p>
+    <div class="hero-buttons">
+      <a href="/products" class="discover-btn">Shop Now</a>
+      <a href="/auth/login" class="discover-btn secondary">Sign In</a>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="feature">
+    <h2>💍 Premium Products</h2>
+    <p>Explore our collection of curated items</p>
+    <a href="/products">Browse Shop →</a>
+  </div>
+  <div class="feature">
+    <h2>🔐 Secure Authentication</h2>
+    <p>JWT-powered API for mobile & web apps</p>
+  </div>
+  <div class="feature">
+    <h2>⚙️ Admin Dashboard</h2>
+    <p>Manage products with ease</p>
+    <% if (user && user.role === 'admin') { %>
+      <a href="/admin">Go to Admin →</a>
+    <% } %>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2026 Oura Health. All rights reserved.</p>
+</footer>
+
+<style>
+  .auth-buttons { display: flex; gap: 10px; align-items: center; }
+  .btn { padding: 8px 16px; border-radius: 50px; text-decoration: none; font-weight: 500; }
+  .btn-login { background: #1a1a1a; color: white; }
+  .btn-register { background: white; color: #1a1a1a; border: 1px solid #1a1a1a; }
+  .btn-logout { background: #a05252; color: white; }
+  .alert { padding: 12px 20px; margin: 10px 0; border-radius: 4px; }
+  .alert-success { background: #d4edda; color: #155724; }
+  .alert-error { background: #f8d7da; color: #721c24; }
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 60px; }
+  .feature { text-align: center; }
+  .feature a { color: #1a1a1a; text-decoration: none; font-weight: 500; }
+  .user-name { font-weight: 500; margin-right: 10px; }
+</style>
+
+</body>
+</html>
