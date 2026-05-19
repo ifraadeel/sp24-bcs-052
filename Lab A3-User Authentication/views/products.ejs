@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Oura Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f0ebe3;
+      --cream-dark: #e4ddd3;
+      --charcoal: #1a1a1a;
+      --charcoal-soft: #3a3a3a;
+      --muted: #8a8278;
+      --accent: #1a1a1a;
+      --white: #fdfcfa;
+      --border: #d8d2c8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      color: var(--charcoal);
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--charcoal); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 70px 60px 50px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--charcoal);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ── LAYOUT ── */
+    .page-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 160px);
+    }
+
+    /* ── SIDEBAR FILTERS ── */
+    .sidebar {
+      border-right: 1px solid var(--border);
+      padding: 40px 30px;
+      background: var(--white);
+    }
+
+    .sidebar-title {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .filter-section {
+      margin-bottom: 32px;
+    }
+
+    .filter-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal-soft);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .filter-section input,
+    .filter-section select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .filter-section input:focus,
+    .filter-section select:focus {
+      outline: none;
+      border-color: var(--charcoal);
+    }
+
+    .price-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .filter-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .apply-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--charcoal);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .apply-btn:hover {
+      background: var(--charcoal-soft);
+      transform: translateY(-1px);
+    }
+
+    .clear-link {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .clear-link:hover { color: var(--charcoal); }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      padding: 40px 50px;
+    }
+
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .results-count {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--charcoal);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+
+    .product-info {
+      padding: 18px 20px 20px;
+    }
+
+    .product-category {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .product-meta {
+      text-align: right;
+    }
+
+    .product-rating {
+      font-size: 0.8rem;
+      color: var(--charcoal-soft);
+      margin-bottom: 2px;
+    }
+
+    .product-stock {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #5a8a5a;
+    }
+
+    .product-stock.out {
+      color: #a05252;
+    }
+
+    /* ── EMPTY STATE ── */
+    .no-products {
+      text-align: center;
+      padding: 100px 20px;
+      color: var(--muted);
+    }
+
+    .no-products-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.4;
+    }
+
+    .no-products h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--charcoal-soft);
+      margin-bottom: 8px;
+    }
+
+    .no-products p {
+      font-size: 0.9rem;
+    }
+
+    /* ── PAGINATION ── */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .pagination a,
+    .pagination span {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      text-decoration: none;
+      color: var(--charcoal-soft);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      background: var(--white);
+    }
+
+    .pagination a.prev-next,
+    .pagination span.prev-next {
+      width: auto;
+      padding: 0 18px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .pagination a:hover {
+      background: var(--charcoal);
+      color: var(--white);
+      border-color: var(--charcoal);
+    }
+
+    .pagination .active {
+      background: var(--charcoal);
+      color: var(--white);
+      border-color: var(--charcoal);
+    }
+
+    .pagination .disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .page-hero { padding: 48px 24px 36px; }
+      .page-body { grid-template-columns: 1fr; }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 28px 24px;
+      }
+      .main-content { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">ŌURA</a>
+    <a href="/" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <p class="hero-label">Oura Shop</p>
+    <h1 class="hero-title">Crafted for <em>your every day</em></h1>
+  </div>
+
+  <!-- BODY: SIDEBAR + MAIN -->
+  <div class="page-body">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="sidebar">
+      <p class="sidebar-title">Filter</p>
+      <form method="GET" action="/products">
+
+        <div class="filter-section">
+          <label class="filter-label" for="search">Search</label>
+          <input type="text" id="search" name="search" placeholder="Product name…" value="<%= search %>">
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <div class="filter-section">
+          <label class="filter-label" for="category">Category</label>
+          <select id="category" name="category">
+            <option value="">All Categories</option>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat %>" <%= category === cat ? 'selected' : '' %>><%= cat %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <div class="filter-section">
+          <label class="filter-label">Price Range (Rs.)</label>
+          <div class="price-row">
+            <input type="number" name="minPrice" placeholder="Min" value="<%= minPrice %>">
+            <input type="number" name="maxPrice" placeholder="Max" value="<%= maxPrice %>">
+          </div>
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <button type="submit" class="apply-btn">Apply Filters</button>
+        <a href="/products" class="clear-link">Clear all</a>
+      </form>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <div class="results-bar">
+        <span class="results-count"><%= products.length %> product<%= products.length !== 1 ? 's' : '' %> found</span>
+      </div>
+
+      <% if (products.length > 0) { %>
+        <div class="products-grid">
+          <% products.forEach(product => { %>
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <img src="<%= product.image %>" alt="<%= product.name %>">
+                <% if (product.stock === 0) { %>
+                  <span class="product-badge">Sold Out</span>
+                <% } %>
+              </div>
+              <div class="product-info">
+                <p class="product-category"><%= product.category %></p>
+                <h3 class="product-name"><%= product.name %></h3>
+                <div class="product-footer">
+                  <span class="product-price">Rs. <%= product.price.toLocaleString() %></span>
+                  <div class="product-meta">
+                    <div class="product-rating">⭐ <%= product.rating %> / 5</div>
+                    <% if (product.stock > 0) { %>
+                      <div class="product-stock"><%= product.stock %> in stock</div>
+                    <% } else { %>
+                      <div class="product-stock out">Out of stock</div>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+          <% if (currentPage > 1) { %>
+            <a href="?page=<%= currentPage - 1 %>&search=<%= search %>&category=<%= category %>&minPrice=<%= minPrice %>&maxPrice=<%= maxPrice %>" class="prev-next">← Prev</a>
+          <% } else { %>
+            <span class="prev-next disabled">← Prev</span>
+          <% } %>
+
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>&search=<%= search %>&category=<%= category %>&minPrice=<%= minPrice %>&maxPrice=<%= maxPrice %>"
+               class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+          <% } %>
+
+          <% if (currentPage < totalPages) { %>
+            <a href="?page=<%= currentPage + 1 %>&search=<%= search %>&category=<%= category %>&minPrice=<%= minPrice %>&maxPrice=<%= maxPrice %>" class="prev-next">Next →</a>
+          <% } else { %>
+            <span class="prev-next disabled">Next →</span>
+          <% } %>
+        </div>
+
+      <% } else { %>
+        <div class="no-products">
+          <div class="no-products-icon">○</div>
+          <h3>Nothing found</h3>
+          <p>Try adjusting your filters or <a href="/products" style="color: var(--charcoal);">browse all products</a>.</p>
+        </div>
+      <% } %>
+
+    </main>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<aside class="admin-sidebar">
+  <div class="sidebar-brand">
+    <a href="/" class="brand-logo">ŌURA</a>
+    <span class="brand-sub">Admin Panel</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="/admin"     class="nav-link <%= typeof activePage!=='undefined'&&activePage==='dashboard'?'active':'' %>"><span class="nav-icon">▦</span> Dashboard</a>
+    <a href="/admin/new" class="nav-link <%= typeof activePage!=='undefined'&&activePage==='add'?'active':'' %>"><span class="nav-icon">＋</span> Add Product</a>
+    <a href="/products"  class="nav-link"><span class="nav-icon">◎</span> View Store</a>
+    <a href="/"          class="nav-link"><span class="nav-icon">⌂</span> Home</a>
+  </nav>
+  <div class="sidebar-footer">
+    <% if(currentUser){ %>
+      <p class="signed-as">Signed in as</p>
+      <p class="admin-name"><%= currentUser.name %></p>
+    <% } %>
+    <form method="POST" action="/auth/logout" style="margin-top:14px;">
+      <button type="submit" class="btn-logout">← Logout</button>
+    </form>
+  </div>
+</aside>
+
+<% if(messages&&messages.success&&messages.success.length){ %>
+  <div class="admin-flash success"><%= messages.success[0] %></div>
+<% } %>
+<% if(messages&&messages.error&&messages.error.length){ %>
+  <div class="admin-flash error"><%= messages.error[0] %></div>
+<% } %>
+
+<style>
+  :root{--cream:#f0ebe3;--charcoal:#1a1a1a;--muted:#8a8278;--border:#d8d2c8;--white:#fdfcfa;}
+  .admin-sidebar{width:230px;min-height:100vh;background:var(--charcoal);display:flex;flex-direction:column;padding:36px 0;position:fixed;top:0;left:0;z-index:100;}
+  .sidebar-brand{padding:0 28px 32px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .brand-logo{display:block;font-family:'Playfair Display',serif;font-size:1.5rem;letter-spacing:.1em;color:var(--white);text-decoration:none;}
+  .brand-sub{font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px;display:block;}
+  .sidebar-nav{padding:24px 0;flex:1;display:flex;flex-direction:column;gap:2px;}
+  .nav-link{display:flex;align-items:center;gap:12px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:rgba(255,255,255,.55);text-decoration:none;transition:all .2s;border-left:3px solid transparent;}
+  .nav-link:hover{color:var(--white);background:rgba(255,255,255,.05);}
+  .nav-link.active{color:var(--white);border-left-color:var(--white);background:rgba(255,255,255,.07);}
+  .nav-icon{font-size:.95rem;width:18px;text-align:center;}
+  .sidebar-footer{padding:20px 28px 0;border-top:1px solid rgba(255,255,255,.08);}
+  .signed-as{font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;}
+  .admin-name{font-size:.88rem;color:rgba(255,255,255,.7);margin-top:3px;font-family:'DM Sans',sans-serif;}
+  .btn-logout{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);padding:8px 16px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer;transition:all .2s;width:100%;}
+  .btn-logout:hover{border-color:rgba(255,255,255,.4);color:var(--white);}
+  .admin-main{margin-left:230px;background:var(--cream);min-height:100vh;padding:48px 52px;}
+  .admin-flash{position:fixed;top:20px;right:24px;z-index:999;padding:12px 22px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;animation:fadeOut 4s forwards;}
+  .admin-flash.success{background:#f0fdf0;border:1px solid #c8e0c8;color:#3a7a3a;}
+  .admin-flash.error{background:#fdf0f0;border:1px solid #e0c8c8;color:#a05252;}
+  @keyframes fadeOut{0%,70%{opacity:1}100%{opacity:0;pointer-events:none}}
+</style>
